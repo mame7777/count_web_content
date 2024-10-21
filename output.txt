@@ -1,0 +1,3 @@
+Unique href url count : 42
+Unique href url count in root url : 22
+{'https://mame77.com/posts/': 15}
