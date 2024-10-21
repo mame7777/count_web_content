@@ -43,7 +43,11 @@ def count_pages(
     while len(not_completed) > 0:
         sleep(sleep_sec)
         current_url = not_completed.pop()
-        response = requests.get(current_url, timeout=6.0)
+        try:
+            response = requests.get(current_url, timeout=12.0)
+        except requests.exceptions.RequestException as e:
+            print(e)
+            continue
         if response.status_code != 200:
             continue
 
