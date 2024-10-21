@@ -15,9 +15,22 @@ def count_pages(
     additional_url: list[str] = [],
     # exclude_url: list[str] = [],
     sleep_sec: int = 0.1,
-    is_print_url: bool = False,
+    is_print_working: bool = False,
     output_url_file_name: str = "",
-) -> Tuple[int, int, dict[str, int], list[str]]:
+) -> Tuple[int, int, dict[str, int]]:
+    """ページのコンテンツをカウントする
+
+    Args:
+        root_url (str): 検索したいルートのURL
+        additional_url (list[str], optional): 個別にコンテンツ数をカウントしたいURL(root_url配下). Defaults to [].
+        sleep_sec (int, optional): スクレイピングの時間間隔. Defaults to 0.1.
+        is_print_working (bool, optional): 実行中の状態を出力するかどうか. Defaults to False.
+        output_url_file_name (str, optional): 検索したルートURL配下のファイル一覧を出力するファイル先. Defaults to "".
+
+    Returns:
+        Tuple[int, int, dict[str, int]]: [hrefのリンク先数, root_url配下のhrefのリンク先数, additional_urlで指定したパス配下のhrefのリンク先数, root_url配下のhrefのリスト]
+        リンク先の数は全て一意のURLでカウントしている
+    """
     not_completed = list()
     not_completed.append(root_url)
 
@@ -38,7 +51,7 @@ def count_pages(
 
         completed_list.append(current_url)
         page_count += 1
-        if is_print_url:
+        if is_print_working:
             print("current: " + current_url)
 
         if not current_url.startswith(root_url):
@@ -78,7 +91,8 @@ def count_pages(
                     if a_url.startswith(key):
                         additional_url_count_dict[key] += 1
 
-        print("remain: " + str(len(not_completed)))
+        if is_print_working:
+            print("remain: " + str(len(not_completed)))
 
     if output_url_file_name != "":
         with open(output_url_file_name, "w", encoding="utf-8") as f:
@@ -92,7 +106,7 @@ if __name__ == "__main__":
     # root_url = os.getenv("SEARCH_ROOT_URL")
     count, in_root_count, add_dict = count_pages(
         "https://mame77.com/",
-        is_print_url=True,
+        is_print_working=True,
         additional_url=["https://mame77.com/posts/", "https://mame77.com/about"],
         output_url_file_name="output_url.txt",
     )
