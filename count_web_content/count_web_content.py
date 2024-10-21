@@ -50,6 +50,10 @@ def count_pages(
         a_tags = html.find_all("a", href=True)
         for a_tag in a_tags:
             a_url = a_tag["href"]
+
+            if a_url == "" or a_url == "#":
+                continue
+
             if not a_url.startswith("http") or not a_url.startswith("https"):
                 if a_url.startswith("/"):
                     a_url = root_url + a_url[1:]
@@ -60,10 +64,13 @@ def count_pages(
                 # 「..」が含まれているときの処理
                 while a_url.find("..") != -1:
                     a_dot_dot_idx = a_url.find("..")
-                    a_before_src_from_dot_idx = a_url.rfind("/", 0, a_dot_dot_idx)
+                    a_before_src_from_dot_idx = a_url.rfind("/", 0, a_dot_dot_idx - 1)
                     a_url = (
                         a_url[:a_before_src_from_dot_idx] + a_url[a_dot_dot_idx + 2 :]
                     )
+
+            if a_url.endswith("/"):
+                a_url = a_url[:-1]
 
             if (a_url not in completed_list) and (a_url not in not_completed):
                 not_completed.append(a_url)
@@ -86,7 +93,7 @@ if __name__ == "__main__":
     count, in_root_count, add_dict = count_pages(
         "https://mame77.com/",
         is_print_url=True,
-        additional_url=["https://mame77.com/posts/"],
+        additional_url=["https://mame77.com/posts/", "https://mame77.com/about"],
         output_url_file_name="output_url.txt",
     )
     print("Unique href url count : " + str(count))
