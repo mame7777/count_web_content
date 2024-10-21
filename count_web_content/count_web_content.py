@@ -1,7 +1,6 @@
 # coding: utf-8
 """webページのコンテンツをカウントするモジュール"""
 
-import os
 from pprint import pprint
 from time import sleep
 from typing import Tuple
