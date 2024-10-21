@@ -2,7 +2,7 @@
 name = "count-web-content"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["mame7777"]
 readme = "README.md"
 packages = [{ include = "count_web_content" }]
 
