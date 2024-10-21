@@ -2,7 +2,7 @@
 
 ## Installation
 ```bash
-$ poetry install
+$ pip install count-web-content
 ```
 
 ## Usage
