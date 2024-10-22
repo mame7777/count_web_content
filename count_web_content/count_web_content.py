@@ -10,8 +10,8 @@ from bs4 import BeautifulSoup
 
 def count_pages(
     root_url: str,
-    additional_url: list[str] = None,
-    exclude_url: list[str] = None,
+    additional_url: list[str] = [],
+    exclude_url: list[str] = [],
     sleep_sec: int = 0.1,
     is_print_working: bool = False,
     output_url_file_name: str = "",
@@ -41,14 +41,12 @@ def count_pages(
     in_root_page_count = 0
 
     additional_url_count_dict = dict()
-    if additional_url != None:
-        for key in additional_url:
-            additional_url_count_dict[key] = 0
+    for key in additional_url:
+        additional_url_count_dict[key] = 0
 
     exclude_url_count_dict = dict()
-    if exclude_url != None:
-        for key in exclude_url:
-            exclude_url_count_dict[key] = 0
+    for key in exclude_url:
+        exclude_url_count_dict[key] = 0
 
     while len(not_completed) > 0:
         current_url = not_completed.pop()

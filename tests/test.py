@@ -9,7 +9,7 @@ import count_web_content.count_web_content as count_page
 if __name__ == "__main__":
     load_dotenv()
     # root_url = os.getenv("SEARCH_ROOT_URL")
-    count, in_root_count, add_dict = count_page.count_pages(
+    count, in_root_count, add_dict, exclude_dict = count_page.count_pages(
         "https://mame77.com/",
         is_print_working=True,
         additional_url=["https://mame77.com/posts/", "https://mame77.com/about"],

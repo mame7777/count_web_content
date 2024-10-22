@@ -8,11 +8,10 @@ $ pip install count-web-content
 ## Usage
 Simple usage:
 ```python
-count, in_root_count, add_dict = count_page.count_pages(
-    root_url="https://mame77.com/",
+count, in_root_count, add_dict, exclude_dict = count_page.count_pages(
+    "https://mame77.com/",
     is_print_working=True,
     additional_url=["https://mame77.com/posts/", "https://mame77.com/about"],
-    exclude_url=["https://mame77.com/posts/hogehoge"],
     output_url_file_name="output_url.txt",
 )
 ```
