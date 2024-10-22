@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "count-web-content"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["mame7777"]
 readme = "README.md"
