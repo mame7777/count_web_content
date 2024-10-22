@@ -51,7 +51,6 @@ def count_pages(
             exclude_url_count_dict[key] = 0
 
     while len(not_completed) > 0:
-        sleep(sleep_sec)
         current_url = not_completed.pop()
 
         is_continue = False
@@ -64,6 +63,7 @@ def count_pages(
         if is_continue:
             continue
 
+        sleep(sleep_sec)
         try:
             response = requests.get(current_url, timeout=6.0)
         except requests.exceptions.RequestException as e:
