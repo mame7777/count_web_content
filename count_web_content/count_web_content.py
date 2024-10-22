@@ -95,6 +95,8 @@ def count_pages(
             if not a_url.startswith("http") or not a_url.startswith("https"):
                 if a_url.startswith("/"):
                     a_url = root_url + a_url[1:]
+                elif a_url.startswith("./"):
+                    a_url = current_url + a_url[1:]
                 else:
                     slash_idx = current_url.rfind("/")
                     a_url = current_url[: slash_idx + 1] + a_url
